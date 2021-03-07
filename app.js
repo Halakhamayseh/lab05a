@@ -52,7 +52,11 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 let sumAndMultiply=function (a, b,c) { //eslint-disable-line
-    let arra=[a+b+c,a*b*c,'4 and 7 and 5 sum to 16.','The product of 4 and 7 and 5 is 140.'];
+  let sum2= sum(a,b)[0];
+  let sum3= sum(sum2,c)[0];
+  let multiply1= multiply(a,b)[0];
+  let multiply2= multiply(multiply1,c)[0];
+    let arra=[sum3,multiply2,`${a} and ${b} and ${c} sum to ${sum3}.`,`the product of ${a} and ${b} and ${c} is ${multiply2}.`];
     return arra;
     };
     sumAndMultiply(4,7,5);
@@ -75,10 +79,11 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
  //eslint-disable-line
  let testArray=[2,3,4];
- function sumArray(testArray){
-  let testArray0=(testArray[0]+testArray[1]+testArray[2]);  
-  let testArray1='2,3,4 was passed in as an array of numbers, and 9 is their sum.'; 
- testArray = [testArray0,testArray1];
+ function sumArray(sumArr){
+  for (var i = 0; i < sumArr.length; i++){
+    let testArray0 = sum(sum(sumArr[i], sumArr[i+1])[0], sumArr[i+2])[0];
+  let testArray1=`${testArray} was passed in as an array of numbers, and ${testArray0[0]} is their sum.`; 
+  testArray = [testArray0,testArray1];
 return testArray;
 };
 console.log (testArray);
@@ -100,14 +105,16 @@ IMPORTANT DETAIL: You may not use the arithmetic operator * in this function. To
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiplyArray() function and see if the test passes.*/
 
 // Write your code here
-var multArr = [2,3,4];
-function multiplyArray(multArr) {  
-        let multArr0=multiply[0](multArr[0,1,2]);  
-         let multArr1='The numbers 2,3,4 have a product of 24.'; 
-         multArr = [multArr0,multArr1];
-       return multArr;
-       };
-       multiplyArray[multArr];//eslint-disable-line
+function multiplyArray(multArr) { //eslint-disable-line
+  for (let i = 0; i < multArr.length; i++){
+      let multArr0 = multiply(multiply(multArr[i], multArr[i+1])[0], multArr[i+2])[0];
+      let multArr1=`The numbers ${multArr} have a product of ${multArr0}.`;
+      multArr = [multArr0,multArr1];
+      return multArr;
+      };
+  }
+
+multiplyArray[multArr];//eslint-disable-line
 // Here is the test for multiplyArray(); uncomment it to run it
 testMultiplyArray(testArray);
 
